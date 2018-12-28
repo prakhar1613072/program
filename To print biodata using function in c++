@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+void biodata(char name[20],char father[20],char DOB[15],char sex,int age,int height) //function to display biodata
+{
+ cout<<"------------------BIODATA------------------------"<<endl;
+ cout<<"NAME :-"<<name<<endl<<"Father's Name:-"<<father<<endl<<"Date Of Birth :-"<<DOB<<endl;
+ cout<<"Sex:-"<<sex<<endl<<"Age :-"<<age<<endl<<"Height:- "<< height;
+} 
+int main()
+{
+  int age;
+  char name[20],fathersname[20],DOB[15],sex; //Intialization
+  float height;
+  cout<<"Enter name = ";
+  cin>>name;
+  cout<<endl<<"Enter Father's Nmae = ";
+  cin>>fathersname;
+  cout<<endl<<"Age = ";
+  cin>>age;
+  cout<<endl<<"Date of Birth =";
+  cin>>DOB;
+  cout<<endl<<"Height(in inches) = ";
+  cin>>height;
+  cout<<endl<<"sex(F/M) =";
+  cin>>sex;
+  biodata(name,fathersname,DOB,sex,age,height);  //Call biodata function to display
+  return(0);
+}
+OUTPUT:-
+Enter name =  Dhoni                                                                                                                                         
+                                                                                                                                                           
+Enter Father's Nmae = Kamal                                                                                                                                
+                                                                                                                                                           
+Age = 23                                                                                                                                                   
+                                                                                                                                                           
+Date of Birth =23/5/91                                                                                                                                     
+                                                                                                                                                           
+Height(in inches) = 6.1                                                                                                                                    
+                                                                                                                                                           
+sex(F/M) =MM                                                                                                                                               
+---------------  BIODATA------------------------                                                                                                          
+NAME :-Dhoni                                                                                                                                               
+Father's Name:-Kamal                                                                                                                                       
+Date Of Birth :-23/5/91                                                                                                                                    
+Sex:-M                                                                                                                                                     
+Age :-23                                                                                                                                                   
+Height:- 6    
