@@ -1,0 +1,65 @@
+from math import floor
+import time
+import matplotlib.pyplot as plt
+def max_heapify(A,i,n):
+    l=left(i)
+    r=right(i)
+    if l<=n : 
+        if A[l]>A[i]:
+            largest=l
+        else:
+            largest=i
+        
+    if r<=n:    
+        if A[r]>A[i]:
+            largest=r
+        else:
+            largest=i
+    if l<=n or r<=n:        
+        if largest != i:
+            A[i],A[largest]=A[largest],A[i]
+            max_heapify(A,largest,n)
+        
+def left(i):
+    return (2*i)
+def right(i):
+    return (2*i)+1
+def buildheap(A):
+    n=len(A)-1
+    for i in range(floor(len(A)/2),-1,-1):
+        max_heapify(A,i,n)
+    return n    
+    
+def heapsort(A):
+    l=[]
+    n=buildheap(A)
+    for i in range(len(A)-1,-1,-1):
+        A[0],A[i]=A[i],A[0]
+        n=n-1
+        l.append(A[i])
+        del(A[i])
+        for i in range(floor(len(A)/2),-1,-1):
+            max_heapify(A,i,n)
+  
+        
+        
+l=[]
+ti=[]
+for i in range(1000):
+    l.append(i)
+    a=[]
+    for j in range(0,i):
+        a.append(j)
+    t1=time.time()
+    heapsort(a)
+    t2=time.time()
+    ti.append(t2-t1)
+plt.plot(l, ti, label='Heap Sort')
+plt.xlabel('x label')
+plt.ylabel('y label')
+
+plt.title("Time Graph")
+
+plt.legend()
+
+plt.show()    
