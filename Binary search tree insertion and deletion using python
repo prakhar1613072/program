@@ -1,0 +1,82 @@
+class bst:
+    def __init__(self,data):
+        self.left=None
+        self.right=None
+        self.root=data
+    def insert(self,data):
+        if self.root!=None:
+            if data<self.root:
+                if self.left is None:
+                    self.left=bst(data)
+                else:
+                    self.left.insert(data)
+            elif data>self.root:
+                if self.right is None:
+                    self.right=bst(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.root=data
+    def search(self,data,parent=None):        
+        if data<self.root:
+            if self.left is None:
+                return None,None
+            else:
+                return self.left.search(data,self)
+        elif data>self.root:
+            if self.right is None:
+                return None,None
+            else:
+                return self.right.search(data,self)
+        else:
+            return self,parent
+    def child_count(self):
+        c = 0
+        if self.left:
+            c += 1
+        if self.right:
+            c += 1
+        return c
+    def delete(self, data):
+        node, parent = self.search(data)
+        if node is not None:
+            children_count = node.child_count()
+        else:
+            print("Node Not Found")
+            return
+        if children_count == 0:
+            if parent:
+                if parent.left is node:
+                    parent.left = None
+                else:
+                    parent.right = None
+                del node
+            else:
+                self.data = None
+        elif children_count == 1:
+            if node.left:
+                n = node.left
+            else:
+                n = node.right
+            if parent:
+                if parent.left is node:
+                    parent.left = n
+                else:
+                    parent.right = n
+            else:
+                self.left = n.left
+                self.right = n.right
+                self.data = n.data
+        else:
+            parent = node
+            successor = node.right
+            while successor.left:
+                parent = successor
+                successor = successor.left
+                node.root = successor.root
+                if parent.left == successor:
+                    parent.left = successor.right
+                else:
+                    parent.right = successor.right       
+                    
+                    
