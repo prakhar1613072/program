@@ -1,0 +1,95 @@
+import time
+import matplotlib.pyplot as plt
+import random
+def randpartitionFunc(A,left, right, pivot):
+    leftPointer = left
+    rightPointer = right 
+   
+    while True:
+        while A[leftPointer] < pivot:
+              leftPointer+=1
+              
+        
+    
+        while rightPointer > 0 and A[rightPointer] > pivot :
+            rightPointer-=1
+    
+        if leftPointer >= rightPointer:
+            break
+        else :               
+            A[leftPointer],A[rightPointer]=A[rightPointer],A[leftPointer]
+    if(A[leftPointer] > A[right]):       
+        A[leftPointer],A[right]=A[right],A[leftPointer]
+
+    return leftPointer
+def partitionFunc(A,left, right, pivot):
+    leftPointer = left
+    rightPointer = right - 1
+    while True:
+        while A[leftPointer] < pivot:
+            leftPointer+=1
+        while rightPointer > 0 and A[rightPointer] > pivot :
+            rightPointer-=1
+        if leftPointer >= rightPointer:
+            break
+        else :               
+            A[leftPointer],A[rightPointer]=A[rightPointer],A[leftPointer]
+    if(A[leftPointer] > A[right]):       
+        A[leftPointer],A[right]=A[right],A[leftPointer]
+    return leftPointer
+def randquickSort(A,left, right):
+    if right-left <= 0:
+        return A
+    
+    else :     
+        pivot = random.choice(A[left:right])
+        print(left,pivot,right)
+        partition = randpartitionFunc(A,left, right, pivot)
+        randquickSort(A,left,partition-1)
+        randquickSort(A,partition+1,right)
+        return A
+   
+def quickSort(A,left, right):
+    
+    if right-left <= 0:
+        return A
+    else :     
+        pivot = A[right]
+        partition = partitionFunc(A,left, right, pivot)
+        quickSort(A,left,partition-1)
+        quickSort(A,partition+1,right)   
+    return A    
+     
+l=[]
+ti=[]
+tr=[]
+r=[]
+rl=[]
+rr=[]
+tr2,tr3=[],[]
+p=[]
+
+for i in range(10):
+    
+    l.append(i)
+    a=[]
+    for j in range(i,0,-1):
+        a.append(j)
+        r.append(j)
+    t1=time.time()
+    quickSort(a,0,len(a)-1)
+    t2=time.time()
+    ti.append(t2-t1)
+    t1=time.time()
+    a=[]
+    randquickSort(r,0,len(a)-1)
+    t2=time.time()
+    tr.append(t2-t1)
+    r=[]
+plt.plot(l, ti, label='Quick Sort')
+plt.show() 
+plt.plot(l,tr,label='Random Quick Sort' )
+plt.xlabel('x label')
+plt.ylabel('y label')
+plt.show()  
+
