@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+int length(char str[50]){ 
+ int i=0;
+ while(str[i]!='\0'){
+  i++;
+ }
+ return(i);
+}
+int main()
+{
+ char string[50];
+ cout<<"Enter the String = ";
+ cin>>string;
+ cout<<"\n"<<"Size of string = "<<length(string);
+ return(0);
+}
+
+OUTPUT:-
+Enter the String = dhoni                                                                                                                                 
+                                                                                                                                                         
+Size of string = 5  
